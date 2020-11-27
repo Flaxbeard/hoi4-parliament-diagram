@@ -1,0 +1,14 @@
+spriteTypes = {
+
+	spriteType = {
+		name = "GFX_Line_Graph_Background"
+		textureFile = "/gfx/interface/parliament_sample/parliament_background.dds"
+	}
+
+	spriteType = {
+		name = "GFX_Parliament_Seat"
+		textureFile = "/gfx/interface/parliament_sample/parliament_seat.dds"
+		noOfFrames = 4
+	}
+
+}
