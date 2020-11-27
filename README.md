@@ -1,6 +1,8 @@
 # HOI4 Parliament Diagram
 
-A handy Python generator which will generate code for a dynamic parliament diagram, which can be slotted into any Hearts of Iron IV Scripted GUI. This repository also includes a code sample.
+A handy Python generator which will generate code for a dynamic parliament diagram which can be slotted into any Hearts of Iron IV Scripted GUI.
+
+These diagrams can have an arbitrary number of seats and can use any set of icons. This repo also includes a code sample to help you get started.
 
 ## Guides
 Guides are coming soon. For now, take a look at the sample code provided in this repo, and the commented output of the diagram creator tool.
