@@ -7,6 +7,9 @@ In addition, tooltips, rings to highlight coalition members, and more can be add
 
 This repo also includes a code sample to help you get started.
 
+## Usage
+The diagram creator tool requires Python 3 and the [Pillow](https://pillow.readthedocs.io/en/stable/) library (`pip install Pillow`). The tool is a GUI built in tkinter and is fairly self-explanatory, simply move your sliders to design a nice looking diagram, select an icon, fill in the fields below the preview, and click "Generate Output." Resulting code is all included in the `parliament_gui_code.txt` file, comments explain where to put each part.
+
 ## Guides
 Guides are coming soon. For now, take a look at the sample code provided in this repo, and the commented output of the diagram creator tool.
 
