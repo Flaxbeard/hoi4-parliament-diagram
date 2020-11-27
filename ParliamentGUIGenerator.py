@@ -113,7 +113,7 @@ class UI(tk.Frame):
 			self.create_widgets()
 		else:
 			self.create_pil_msg()
-		self.load_image("./circle_smol.png")
+		self.load_image("./small_circle.png")
 
 	def create_pil_msg(self):
 		self.pil_msg = tk.Label(self)
