@@ -9,7 +9,7 @@ guiTypes = {
 		
 		background = {
 			name = "background"		
-			quadTextureSprite = "GFX_Line_Graph_Background"
+			quadTextureSprite = "GFX_Parliament_Background"
 		}
 
 		gridboxtype = {
