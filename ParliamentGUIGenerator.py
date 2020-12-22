@@ -30,7 +30,7 @@ containerWindowType = {{
 	position = {{ x = 0 y = 0 }}
 
 	iconType = {{ 
-		name = "parliament_dot_icon"
+		name = "{parliament_dot_icon}"
 		quadTextureSprite = "{sprite_name}"
 		{tooltip_info}
 	}}
@@ -50,7 +50,7 @@ GUI_FILE_2 = '''
 # First Row Radius: {first_row_rad}
 # Total Delegates: {total_delegates}
 gridboxtype = {{
-	name = "parliament_diagram"
+	name = "{parliament_diagram}"
 	position = {{ x = 0 y = 0 }}
 	size = {{ width = 100%% height = 100%% }}
 	slotsize = {{ width = 100%% height = 0 }}
@@ -65,7 +65,7 @@ SCRIPTED_GUI = '''
 ### Insert into the scripted GUI for the container which holds the parliament_diagram gridboxtype
 
 dynamic_lists = {{
-	parliament_diagram = {{
+	{parliament_diagram} = {{
 		array = {x_array}
 		change_scope = no
 		entry_container = {container_name}
@@ -74,7 +74,7 @@ dynamic_lists = {{
 }}
 
 properties = {{
-	parliament_dot_icon = {{
+	{parliament_dot_icon} = {{
 		x = {x_array}^seat_idx
 		y = {y_array}^seat_idx
 		frame = {frame_array}^seat_idx
@@ -200,7 +200,7 @@ class UI(tk.Frame):
 
 		self.tooltip_label = tk.Label(frame2l)
 		self.tooltip_label["text"] = "Tooltip loc, empty if none:"
-		self.tooltip_label.pack(padx=2, pady=5, side=tk.LEFT)
+		self.tooltip_label.pack(padx=5, pady=5, side=tk.LEFT)
 
 		self.dc_name_label = tk.Label(frame2l)
 		self.dc_name_label["text"] = "New container name for seat:"
@@ -208,7 +208,15 @@ class UI(tk.Frame):
 		
 		self.gfxid_label = tk.Label(frame2l)
 		self.gfxid_label["text"] = "Seat icon sprite name:"
-		self.gfxid_label.pack(padx=2, pady=5, side=tk.LEFT)
+		self.gfxid_label.pack(padx=5, pady=5, side=tk.LEFT)
+		
+		self.dig_name_label = tk.Label(frame2l)
+		self.dig_name_label["text"] = "Diagram container names:"
+		self.dig_name_label.pack(padx=15, pady=5, side=tk.LEFT)
+		
+		self.seat_name_label = tk.Label(frame2l)
+		self.seat_name_label["text"] = "Seat icon gui name:"
+		self.seat_name_label.pack(padx=15, pady=5, side=tk.LEFT)
 
 		self.tooltip = tk.Entry(frame2)
 		self.tooltip.pack(padx=15, pady=5, side=tk.LEFT)
@@ -218,6 +226,12 @@ class UI(tk.Frame):
 
 		self.gfxid = tk.Entry(frame2)
 		self.gfxid.pack(padx=15, pady=5, side=tk.LEFT)
+
+		self.dig_name = tk.Entry(frame2)
+		self.dig_name.pack(padx=15, pady=5, side=tk.LEFT)
+
+		self.seat_name = tk.Entry(frame2)
+		self.seat_name.pack(padx=15, pady=5, side=tk.LEFT)
 		
 		frame1l.pack(side="top")
 		frame1.pack(side="top")
@@ -251,6 +265,8 @@ class UI(tk.Frame):
 		dc_name = self.dc_name.get()
 		tooltip = self.tooltip.get()
 		gfxid = self.gfxid.get()
+		diagram_name = self.dig_name.get()
+		seat_name = self.seat_name.get()
 
 		total_delegates = self.total_delegates_slider.get()
 		spread_dist = self.spread_slider.get()
@@ -259,9 +275,15 @@ class UI(tk.Frame):
 		if tooltip != '':
 			tooltip = 'pdx_tooltip = "' + tooltip + '"'
 
-		out = GUI_FILE.format(container_name = dc_name, sprite_name = gfxid, tooltip_info=tooltip)
-		out += GUI_FILE_2.format(spread = spread_dist, first_row_rad = hole_size, total_delegates = total_delegates)
-		out += SCRIPTED_GUI.format(x_array = x_pos_array_name, y_array = y_pos_array_name, container_name = dc_name, frame_array = frame_array_name)
+		if diagram_name == '':
+			diagram_name = 'parliament_diagram'
+
+		if seat_name == '':
+			seat_name = 'parliament_dot_icon'
+
+		out = GUI_FILE.format(container_name = dc_name, sprite_name = gfxid, tooltip_info=tooltip, parliament_dot_icon=seat_name)
+		out += GUI_FILE_2.format(spread = spread_dist, first_row_rad = hole_size, total_delegates = total_delegates, parliament_diagram=diagram_name)
+		out += SCRIPTED_GUI.format(x_array = x_pos_array_name, y_array = y_pos_array_name, container_name = dc_name, frame_array = frame_array_name, parliament_diagram=diagram_name, parliament_dot_icon=seat_name)
 
 		a2a_spam = ''
 
